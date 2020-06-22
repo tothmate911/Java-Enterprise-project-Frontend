@@ -1,1 +1,1 @@
-# Java-Enterprize-project-Frontend
+# Java-Enterprise-project-Frontend
