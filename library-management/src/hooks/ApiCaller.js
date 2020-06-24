@@ -1,8 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const getBooks = () => {
-  const url = 'localhost:8080/books';
+export const useApi = (url, dependencies) => {
+  const [isLoading, setLoading] = useState(false);
+  const [fetchedData, setFetchedData] = useState(null);
 
-  axios.get(url);
+  useEffect(() => {
+    console.log(`sending request to ${url}`);
+    setLoading(true);
+    axios.get(url).then((response) => {
+      setFetchedData(response);
+      setLoading(false);
+    });
+  }, [url]);
+
+  return [isLoading, fetchedData];
 };
