@@ -17,7 +17,7 @@ const BookCard = (props) => {
       <Link to={url} key={isbn13}>
         <div className="card-body pt-0 pb-2">
           <h4 className="card-title">{title}</h4>
-          <h6 className="card-text">{authors}</h6>
+          <p className="card-text">{authors}</p>
         </div>
       </Link>
     </div>
