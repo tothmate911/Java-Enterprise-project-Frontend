@@ -9,20 +9,19 @@ function Categories() {
         axios
             .get("http://localhost:8080/books/categories", {})
             .then((response) => setCategories(response.data))
-    },[])
+    }, [])
 
     const categoryIterator =
         categories.map((category, index) => (
-            <div key={index}>
-                <li>{category}</li>
-            </div>
+            <a href="#" class="col-sm-6" key={index}>{category}</a>
+
         ));
 
-
     return (
-        <div>{categoryIterator}</div>
+        <div class="container">
+            <div class="row">{categoryIterator}</div>
+        </div>
     )
-
 }
 
 export default Categories;

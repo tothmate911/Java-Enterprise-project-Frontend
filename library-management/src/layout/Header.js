@@ -25,11 +25,11 @@ function Header() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"/>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <Link class="nav-item nav-link" href="#">
+            <Link class="nav-item nav-link" to="/categories">
               Categories <span class="sr-only">(current)</span>
             </Link>
             <a class="nav-item nav-link" href="#">
