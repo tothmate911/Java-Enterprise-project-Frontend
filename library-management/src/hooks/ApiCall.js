@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const useApi = (url, dependencies) => {
-  const [isLoading, setLoading] = useState(false);
+const useApiCall = (url) => {
   const [fetchedData, setFetchedData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log(`sending request to ${url}`);
     setLoading(true);
     axios.get(url).then((response) => {
-      setFetchedData(response);
+      setFetchedData(response.data);
       setLoading(false);
     });
   }, [url]);
 
-  return [isLoading, fetchedData];
+  return [fetchedData, isLoading];
 };
+
+export default useApiCall;
