@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 function Categories() {
     const [categories, setCategories] = useState([]);
@@ -13,7 +14,7 @@ function Categories() {
 
     const categoryIterator =
         categories.map((category, index) => (
-            <a href="#" class="col-sm-6" key={index}>{category}</a>
+            <Link class="col-sm-3" key={index}>{category}</Link>
 
         ));
 

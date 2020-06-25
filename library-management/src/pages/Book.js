@@ -29,7 +29,7 @@ function Book() {
     <React.Fragment>
       <div className="row">
         <div className="col-5 details p-4">
-          <img className="mb-5 shadow" width="100%" src={noCover} alt=""></img>
+          <img className="mb-5 shadow" width="100%" src={noCover} alt=""/>
           <h6>Year: </h6>
           <h6>Publisher: </h6>
           <h6>ISBN10: </h6>
