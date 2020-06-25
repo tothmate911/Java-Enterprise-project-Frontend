@@ -1,8 +1,9 @@
 import React from "react";
 import noCover from "./no-cover.webp";
 import styled from "styled-components";
-import Rater from "react-rater";
-import "react-rater/lib/react-rater.css";
+import BeautyStars from "beauty-stars";
+
+const value = 3;
 
 function Book() {
   const Button = styled.button`
@@ -37,13 +38,16 @@ function Book() {
           <h6>ISBN10: </h6>
           <h6>ISBN13: </h6>
           <h6>Pages: </h6>
-          <p>Chapters component</p>
         </div>
         <div className="col ml-2">
           <h1>Title</h1>
           <h3>Subtitle</h3>
           <h5>by Authors</h5>
-          <Rater total={5} rating={2} />
+          <BeautyStars
+            size="25px"
+            value={value}
+            onChange={(value) => this.setState({ value })}
+          />
           <br />
           <Button type="button">Borrow</Button>
           <p className="mt-3">
