@@ -20,9 +20,16 @@ h2,
 h3,
 h4,
 h6,
+th,
+td,
 p, .letter {
   color: #c5c6c7;
+}
 
+th,
+td {
+  font-size: medium;
+  line-height: 0.5em;
 }
 
 h5 {
@@ -46,4 +53,17 @@ h5 {
 .card {
   border: none;
   text-align: center;
+}
+
+.image-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  min-height: 29vw;
+  padding-top: 20px;
+}
+
+.image-container img {
+  display: block;
+  transform: scale(1.23);
 }

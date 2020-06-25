@@ -7,13 +7,12 @@ function Footer() {
     width: "100%",
     textAlign: "center",
     bottom: "0",
-    position: "absolute",
     color: "grey",
   };
 
   return (
     <React.Fragment>
-      <div style={footerStyle}>Copyright Bla bla bla</div>
+      <div style={footerStyle}>NGM Codecool</div>
     </React.Fragment>
   );
 }

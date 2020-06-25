@@ -1,23 +1,24 @@
-import React from "react";
-import logo from "./logo.svg";
-import { Link } from "react-router-dom";
+import React from 'react';
+import logo from './logo.svg';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <React.Fragment>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
-        <a class="navbar-brand" href="/">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
+        <a className="navbar-brand" href="/">
+
           <img
             src={logo}
             width="auto"
             height="120"
-            class="d-inline-block align-middle"
+            className="d-inline-block align-middle"
             alt=""
           />
           IT Library
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNavAltMarkup"
@@ -25,14 +26,14 @@ function Header() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"/>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <Link class="nav-item nav-link" to="/categories">
-              Categories <span class="sr-only">(current)</span>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link className="nav-item nav-link" href="#">
+              Categories <span className="sr-only">(current)</span>
             </Link>
-            <Link class="nav-item nav-link" href="#">
+            <Link className="nav-item nav-link" href="#">
               Search
             </Link>
           </div>
