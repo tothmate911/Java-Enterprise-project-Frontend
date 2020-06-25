@@ -1,7 +1,7 @@
-import React from "react";
-import noCover from "../components/no-cover.webp";
-import styled from "styled-components";
-import BeautyStars from "beauty-stars";
+import React from 'react';
+import noCover from '../components/no-cover.webp';
+import styled from 'styled-components';
+import BeautyStars from 'beauty-stars';
 
 const value = 3;
 
@@ -35,7 +35,7 @@ function Book() {
           <div className="pt-2 pl-5 pr-5 pb-2">
             <img width="100%" src={noCover} alt=""></img>
           </div>
-          <table class="table">
+          <table className="table">
             <tbody>
               <tr>
                 <th>Published:</th>
