@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <React.Fragment>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
         <a class="navbar-brand" href="/">
           <img
             src={logo}
@@ -32,9 +32,9 @@ function Header() {
             <Link class="nav-item nav-link" href="#">
               Categories <span class="sr-only">(current)</span>
             </Link>
-            <a class="nav-item nav-link" href="#">
+            <Link class="nav-item nav-link" href="#">
               Search
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

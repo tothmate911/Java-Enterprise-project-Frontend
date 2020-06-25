@@ -2,20 +2,21 @@ import React from "react";
 import Header from "./layout/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
+import Book from "./pages/Book";
 import Footer from "./layout/Footer";
 
 function App() {
-
   return (
-    <div>
+    <React.Fragment>
       <Router>
         <Header></Header>
-        <div className="container">
+        <div className="container p-5 mb-3">
           <Route exact path="/" component={MainPage} />
+          <Route exact path="/book" component={Book} />
         </div>
-          <Footer></Footer>
+        <Footer></Footer>
       </Router>
-    </div>
+    </React.Fragment>
   );
 }
 
