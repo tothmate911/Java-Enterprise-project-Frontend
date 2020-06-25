@@ -1,5 +1,5 @@
 import React from "react";
-import noCover from "./no-cover.webp";
+import noCover from "../components/no-cover.webp";
 import styled from "styled-components";
 import BeautyStars from "beauty-stars";
 
@@ -31,13 +31,34 @@ function Book() {
   return (
     <React.Fragment>
       <div className="row">
-        <div className="col-5 details p-4">
-          <img className="mb-5 shadow" width="100%" src={noCover} alt=""></img>
-          <h6>Year: </h6>
-          <h6>Publisher: </h6>
-          <h6>ISBN10: </h6>
-          <h6>ISBN13: </h6>
-          <h6>Pages: </h6>
+        <div className="col-5 details pl-4 pr-4 pt-0">
+          <div className="pt-2 pl-5 pr-5 pb-2">
+            <img width="100%" src={noCover} alt=""></img>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Year:</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Publisher:</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>ISBN10:</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>ISBN13:</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Pages:</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div className="col ml-2">
           <h1>Title</h1>
