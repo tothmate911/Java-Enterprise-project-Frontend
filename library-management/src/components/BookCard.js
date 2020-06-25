@@ -9,10 +9,6 @@ const BookCard = (props) => {
     image = noCover;
   }
 
-  // const maxNumOfCharacters = 60;
-  // let text = `${authors}: ${title}`;
-  // text = tex
-
   return (
     <div className="card shadow p-0">
       <div className="image-container">
@@ -20,7 +16,8 @@ const BookCard = (props) => {
       </div>
       <Link to={url} key={isbn13}>
         <div className="card-body pt-0 pb-2">
-          <h6 className="card-title">{`${authors}: ${title}`}</h6>
+          <h4 className="card-title">{title}</h4>
+          <h6 className="card-text">{authors}</h6>
         </div>
       </Link>
     </div>
