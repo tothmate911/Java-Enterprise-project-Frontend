@@ -20,8 +20,9 @@ h2,
 h3,
 h4,
 h6,
-p {
+p, .letter {
   color: #c5c6c7;
+
 }
 
 h5 {

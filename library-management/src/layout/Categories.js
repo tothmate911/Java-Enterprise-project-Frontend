@@ -12,11 +12,25 @@ function Categories() {
             .then((response) => setCategories(response.data))
     }, [])
 
-    const categoryIterator =
-        categories.map((category, index) => (
-            <Link class="col-sm-3" key={index}>{category}</Link>
+    /*   const categoryIterator =
+           categories.map((category, index) => (
+               <Link class="col-sm-3" key={index}>{category}</Link>
 
-        ));
+           ));*/
+    const categoryIterator =
+        Object.entries(categories).map(([key, value], i) => (
+            <div key={i}>
+                <div className="letter">{key}</div>
+                <div key={i}>{value.map(element => (
+                    <Link>
+                        <div className="pt-1 pr-3">{element}</div>
+                    </Link>
+                ))}
+                </div>
+            </div>
+        ))
+
+
 
     return (
         <div class="container">
