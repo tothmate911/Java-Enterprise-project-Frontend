@@ -1,6 +1,8 @@
 import React from "react";
 import noCover from "./no-cover.webp";
 import styled from "styled-components";
+import Rater from "react-rater";
+import "react-rater/lib/react-rater.css";
 
 function Book() {
   const Button = styled.button`
@@ -41,9 +43,10 @@ function Book() {
           <h1>Title</h1>
           <h3>Subtitle</h3>
           <h5>by Authors</h5>
-          <p>Rating</p>
+          <Rater total={5} rating={2} />
+          <br />
           <Button type="button">Borrow</Button>
-          <p>
+          <p className="mt-3">
             Description, Description, Description, Description, Description,
             Description, Description, Description, Description, Description,
             Description, Description, Description, Description, Description
