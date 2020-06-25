@@ -1,19 +1,21 @@
-import React from "react";
-import Header from "./layout/Header";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import Footer from "./layout/Footer";
+import React from 'react';
+import Header from './layout/Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import Footer from './layout/Footer';
+import { BookProvider } from './context/BookContext';
 
 function App() {
-
   return (
     <div>
       <Router>
-        <Header></Header>
-        <div className="container">
-          <Route exact path="/" component={MainPage} />
-        </div>
+        <BookProvider>
+          <Header></Header>
+          <div className="container">
+            <Route exact path="/" component={MainPage} />
+          </div>
           <Footer></Footer>
+        </BookProvider>
       </Router>
     </div>
   );
