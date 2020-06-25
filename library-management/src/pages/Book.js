@@ -38,11 +38,19 @@ function Book() {
           <table class="table">
             <tbody>
               <tr>
-                <th>Year:</th>
+                <th>Published:</th>
                 <td></td>
               </tr>
               <tr>
                 <th>Publisher:</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Language:</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Pages:</th>
                 <td></td>
               </tr>
               <tr>
@@ -51,10 +59,6 @@ function Book() {
               </tr>
               <tr>
                 <th>ISBN13:</th>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Pages:</th>
                 <td></td>
               </tr>
             </tbody>
