@@ -1,9 +1,10 @@
-import React from "react";
-import noCover from "./no-cover.webp";
+import React from 'react';
+import BookList from '../components/BookList';
 
 function MainPage() {
   return (
     <React.Fragment>
+    <BookList />
       <h1>New books</h1>
       <div class="card-columns">
         <div class="card shadow">
