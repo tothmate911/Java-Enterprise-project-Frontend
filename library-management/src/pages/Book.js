@@ -1,37 +1,16 @@
 import React, { useContext } from "react";
 import { BookContext } from "../context/BookContext";
+import { StyleContext } from "../context/StyleContext";
 import noCover from "../components/no-cover.webp";
-import styled from "styled-components";
 import BeautyStars from "beauty-stars";
 import { useParams } from "react-router";
 
 function Book() {
   let { isbn13 } = useParams();
   const [fetchedData, isLoading] = useContext(BookContext);
+  const [Button] = useContext(StyleContext);
 
   let content = <h3>Loading Book...</h3>;
-
-  const Button = styled.button`
-    border: none;
-    color: #c5c6c7;
-    background-color: #0b0c10;
-    border: 2px solid #66fcf1;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    &:hover,
-    &:active,
-    &:focus,
-    &:visited {
-      border: 2px solid #45a29e !important;
-      color: #45a29e !important;
-    }
-  `;
 
   if (!isLoading && fetchedData) {
     let book = fetchedData.find((book) => book.isbn13 === isbn13);
