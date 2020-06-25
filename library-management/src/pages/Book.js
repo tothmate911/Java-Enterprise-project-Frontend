@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { BookContext } from '../context/BookContext';
-import noCover from '../components/no-cover.webp';
-import styled from 'styled-components';
-import BeautyStars from 'beauty-stars';
-import { useParams } from 'react-router';
+import React, { useContext } from "react";
+import { BookContext } from "../context/BookContext";
+import noCover from "../components/no-cover.webp";
+import styled from "styled-components";
+import BeautyStars from "beauty-stars";
+import { useParams } from "react-router";
 
 function Book() {
   let { isbn13 } = useParams();
@@ -54,7 +54,7 @@ function Book() {
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
         <tr>
-          <th style={{ textTransform: 'capitalize' }}>{key}:</th>
+          <th style={{ textTransform: "capitalize" }}>{key}:</th>
           <td>{value.toString()}</td>
         </tr>
       );
@@ -82,7 +82,7 @@ function Book() {
           <div className="col ml-2">
             <h1>{title}</h1>
             <h3>{subtitle}</h3>
-            <h5>by {authors}</h5>
+            <h5 className="bright-cyan">by {authors}</h5>
             <BeautyStars
               size="25px"
               value={rating}
