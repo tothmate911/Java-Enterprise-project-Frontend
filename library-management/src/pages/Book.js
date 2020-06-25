@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { BookContext } from "../context/BookContext";
 import noCover from "../components/no-cover.webp";
 import styled from "styled-components";
 import BeautyStars from "beauty-stars";
-
-const value = 3;
+import { useParams } from "react-router";
 
 function Book() {
+  let { isbn13 } = useParams();
+  const [fetchedData, isLoading] = useContext(BookContext);
+
+  let content = <h3>Loading Book...</h3>;
+
   const Button = styled.button`
     border: none;
     color: #c5c6c7;
@@ -28,62 +33,71 @@ function Book() {
     }
   `;
 
-  return (
-    <React.Fragment>
-      <div className="row">
-        <div className="col-5 details pl-4 pr-4 pt-0">
-          <div className="pt-2 pl-5 pr-5 pb-2">
-            <img width="100%" src={noCover} alt=""></img>
+  if (!isLoading && fetchedData) {
+    let book = fetchedData.find((book) => book.isbn13 === isbn13);
+    let {
+      authors,
+      title,
+      subtitle,
+      rating,
+      desc,
+      image,
+      year,
+      publisher,
+      language,
+      pages,
+      isbn10,
+    } = book;
+
+    let details = { year, publisher, language, pages, isbn10, isbn13 };
+
+    let tableContent = Object.entries(details).map(([key, value]) => {
+      return (
+        <tr>
+          <th style={{ textTransform: "capitalize" }}>{key}:</th>
+          <td>{value.toString()}</td>
+        </tr>
+      );
+    });
+
+    let tableOfDetails = (
+      <table class="table">
+        <tbody>{tableContent}</tbody>
+      </table>
+    );
+
+    if (!image) {
+      image = noCover;
+    }
+
+    content = (
+      <React.Fragment>
+        <div className="row">
+          <div className="col-5 details pl-4 pr-4 pt-0">
+            <div className="pt-2 pl-5 pr-5 pb-2">
+              <img width="100%" src={image} alt=""></img>
+            </div>
+            {tableOfDetails}
           </div>
-          <table class="table">
-            <tbody>
-              <tr>
-                <th>Published:</th>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Publisher:</th>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Language:</th>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Pages:</th>
-                <td></td>
-              </tr>
-              <tr>
-                <th>ISBN10:</th>
-                <td></td>
-              </tr>
-              <tr>
-                <th>ISBN13:</th>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="col ml-2">
+            <h1>{title}</h1>
+            <h3>{subtitle}</h3>
+            <h5>by {authors}</h5>
+            <BeautyStars
+              size="25px"
+              value={rating}
+              onChange={(value) => this.setState({ value })}
+            />
+            <br />
+            <Button type="button">Borrow</Button>
+            <p className="mt-3">{desc}</p>
+          </div>
         </div>
-        <div className="col ml-2">
-          <h1>Title</h1>
-          <h3>Subtitle</h3>
-          <h5>by Authors</h5>
-          <BeautyStars
-            size="25px"
-            value={value}
-            onChange={(value) => this.setState({ value })}
-          />
-          <br />
-          <Button type="button">Borrow</Button>
-          <p className="mt-3">
-            Description, Description, Description, Description, Description,
-            Description, Description, Description, Description, Description,
-            Description, Description, Description, Description, Description
-          </p>
-        </div>
-      </div>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  }
+
+  return content;
 }
 
 export default Book;

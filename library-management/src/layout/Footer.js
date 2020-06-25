@@ -12,7 +12,7 @@ function Footer() {
 
   return (
     <React.Fragment>
-      <div style={footerStyle}>Copyright Bla bla bla</div>
+      <div style={footerStyle}>NGM Codecool</div>
     </React.Fragment>
   );
 }
