@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
 function Footer() {
   const footerStyle = {
-    backgroundColor: 'grey',
-    padding: '2%',
-    width: '100%',
-    textAlign: 'center',
-    bottom: '0',
-    // position: 'absolute'
+    backgroundColor: "#010101",
+    padding: "2%",
+    width: "100%",
+    textAlign: "center",
+    bottom: "0",
+    color: "grey",
   };
 
   return (
