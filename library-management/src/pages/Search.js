@@ -20,7 +20,7 @@ function Search() {
     axios
       .get("http://localhost:8080/books/search/" + searchBy + "/" + search, {})
       .then((response) => setResult(response.data));
-  }, [search]);
+  }, [searchBy, search]);
 
   if (result) {
     resultList = result.map((book) => (
