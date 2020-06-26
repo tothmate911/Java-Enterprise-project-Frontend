@@ -32,7 +32,7 @@ function Header() {
                         <Link className="nav-item nav-link" to="/categories">
                             Categories <span className="sr-only">(current)</span>
                         </Link>
-                        <Link className="nav-item nav-link" to="#">
+                        <Link className="nav-item nav-link" to="/search">
                             Search
                         </Link>
                     </div>

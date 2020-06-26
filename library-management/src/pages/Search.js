@@ -32,9 +32,9 @@ function Search() {
         const searchedBook = result.filter(item => item.title.toLowerCase().includes(fieldInput))
         if (fieldInput !== '') {
             setFilteredBooks(searchedBook)
-        } else if(fieldInput === ''){
+        } else if (fieldInput === '') {
             setFilteredBooks([]);
-        }else{
+        } else {
             setFilteredBooks(searchedBook)
 
         }
@@ -42,8 +42,16 @@ function Search() {
 
     const listBooks =
         filteredBooks.map((item, index) => (
-            <div key={index}>
-                <li>{item.title}</li>
+            <div key={index} className="card shadow p-0">
+                <div className="image-container">
+                    <img className="img.fluid m-0" width="100%" src={item.image} alt=""></img>
+                </div>
+                <Link to={item.url} key={item.isbn13}>
+                    <div className="card-body pt-0 pb-4">
+                        <h4 className="card-title">{item.title}</h4>
+                        <p className="card-text bright-cyan">{item.authors}</p>
+                    </div>
+                </Link>
             </div>
         ));
 
@@ -72,7 +80,7 @@ function Search() {
                     placeholder="Search for book"
                 />
             </form>
-            <span id="result-list">{listBooks}</span>
+            <div className="card-columns" id="result-list">{listBooks}</div>
         </React.Fragment>
     );
 }
