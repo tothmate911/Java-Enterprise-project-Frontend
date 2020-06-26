@@ -8,6 +8,7 @@ import { BookProvider } from "./context/BookContext";
 import { StyleProvider } from "./context/StyleContext";
 import Book from "./pages/Book";
 import Search from "./pages/Search";
+import Category from "./pages/Category";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/book/:isbn13" component={Book} />
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/search" component={Search} />
+              <Route path="/categories/:category" component={Category}/>
             </div>
             <Footer></Footer>
           </BookProvider>

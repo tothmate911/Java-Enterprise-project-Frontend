@@ -54,7 +54,7 @@ function Book() {
         <div className="row">
           <div className="col-5 details pl-4 pr-4 pt-0">
             <div className="pt-2 pl-5 pr-5 pb-2">
-              <img width="100%" src={image} alt=""></img>
+              <img width="100%" src={image} alt=""/>
             </div>
             {tableOfDetails}
           </div>
