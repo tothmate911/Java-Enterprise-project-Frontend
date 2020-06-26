@@ -7,7 +7,6 @@ function Header() {
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
                 <a className="navbar-brand" href="/">
-
                     <img
                         src={logo}
                         width="auto"
@@ -26,14 +25,14 @@ function Header() {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                         <Link className="nav-item nav-link" to="/categories">
                             Categories <span className="sr-only">(current)</span>
                         </Link>
-                        <Link className="nav-item nav-link" href="#">
+                        <Link className="nav-item nav-link" to="#">
                             Search
                         </Link>
                     </div>

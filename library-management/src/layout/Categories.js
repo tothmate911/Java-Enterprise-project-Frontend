@@ -17,12 +17,13 @@ function Categories() {
                <Link class="col-sm-3" key={index}>{category}</Link>
 
            ));*/
+
     const categoryIterator =
-        Object.entries(categories).map(([key, value], i) => (
-            <div key={i}>
+        Object.entries(categories).map(([key, value], index) => (
+            <div key={index}>
                 <div className="letter">{key}</div>
-                <div key={i}>{value.map(element => (
-                    <Link>
+                <div key={index}>{value.map(element => (
+                    <Link to={`/categories/${element}`}>
                         <div className="pt-1 pr-3">{element}</div>
                     </Link>
                 ))}
