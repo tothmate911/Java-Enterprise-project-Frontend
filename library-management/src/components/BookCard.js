@@ -1,6 +1,6 @@
-import React from "react";
-import noCover from "./no-cover.webp";
-import { Link } from "react-router-dom";
+import React from 'react';
+import noCover from './no-cover.webp';
+import { Link } from 'react-router-dom';
 
 const BookCard = (props) => {
   let { authors, title, image, url, isbn13 } = props.book;
