@@ -1,41 +1,43 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
-import {Link} from "react-router-dom";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useApiCall from '../hooks/ApiCall';
 
 function Category() {
+  const getCategoryFromUrl = () => {
+    const urlSplitter = window.location.href.split('/');
+    return urlSplitter[urlSplitter.length - 1];
+  };
 
-    const [books, setBooks] = useState([]);
+  const category = getCategoryFromUrl();
+  const urlBooksInCategory = `http://localhost:8080/books/category/${category}`;
 
-    useEffect(() => {
-        axios.get(`http://localhost:8080/books/category/${getCategoryFromUrl()}`)
-            .then((response) => setBooks(response.data));
-    }, [])
+  const [books, booksIsLoading] = useApiCall(urlBooksInCategory);
 
-    const getCategoryFromUrl = () => {
-        const urlSplitter = window.location.href.split("/");
-        return urlSplitter[urlSplitter.length - 1]
-    }
+  let content = <h3>Loading {category} books...</h3>;
 
+  if (!booksIsLoading && books) {
+    const bookIterator = books.map((item, index) => (
+      <div key={index} className="card shadow p-0">
+        <div className="image-container">
+          <img
+            className="img.fluid m-0"
+            width="100%"
+            src={item.image}
+            alt=""
+          ></img>
+        </div>
+        <Link to={item.url} key={item.isbn13}>
+          <div className="card-body pt-0 pb-4">
+            <h4 className="card-title">{item.title}</h4>
+            <p className="card-text bright-cyan">{item.authors}</p>
+          </div>
+        </Link>
+      </div>
+    ));
+    content = <div className="card-columns">{bookIterator}</div>;
+  }
 
-    const bookIterator =
-        books.map((item, index) => (
-            <div key={index} className="card shadow p-0">
-                <div className="image-container">
-                    <img className="img.fluid m-0" width="100%" src={item.image} alt=""></img>
-                </div>
-                <Link to={item.url} key={item.isbn13}>
-                    <div className="card-body pt-0 pb-4">
-                        <h4 className="card-title">{item.title}</h4>
-                        <p className="card-text bright-cyan">{item.authors}</p>
-                    </div>
-                </Link>
-            </div>
-        ))
-
-    return (
-        <div className="card-columns">{bookIterator}</div>
-    )
+  return content;
 }
 
 export default Category;

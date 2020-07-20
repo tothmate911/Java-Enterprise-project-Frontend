@@ -1,14 +1,14 @@
-import React from "react";
-import Header from "./layout/Header";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import Footer from "./layout/Footer";
-import Categories from "./layout/Categories";
-import { BookProvider } from "./context/BookContext";
-import { StyleProvider } from "./context/StyleContext";
-import Book from "./pages/Book";
-import Search from "./pages/Search";
-import Category from "./pages/Category";
+import React from 'react';
+import Header from './layout/Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import Footer from './layout/Footer';
+import Categories from './pages/Categories';
+import { BookProvider } from './context/BookContext';
+import { StyleProvider } from './context/StyleContext';
+import Book from './pages/Book';
+import Search from './pages/Search';
+import Category from './pages/Category';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
               <Route path="/book/:isbn13" component={Book} />
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/search" component={Search} />
-              <Route path="/categories/:category" component={Category}/>
+              <Route path="/categories/:category" component={Category} />
             </div>
             <Footer></Footer>
           </BookProvider>

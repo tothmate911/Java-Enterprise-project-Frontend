@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { BookContext } from "../context/BookContext";
-import BookCard from "../components/BookCard";
+import React, { useContext } from 'react';
+import { BookContext } from '../context/BookContext';
+import BookCard from '../components/BookCard';
 
 const BookList = (props) => {
-  const [fetchedData, isLoading] = useContext(BookContext);
+  const [books, booksisLoading] = useContext(BookContext);
 
   let content = <h3>Loading Books...</h3>;
 
-  if (!isLoading && fetchedData) {
+  if (!booksisLoading && books) {
     content = (
       <div className="card-columns">
-        {fetchedData.map((book) => (
+        {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </div>
