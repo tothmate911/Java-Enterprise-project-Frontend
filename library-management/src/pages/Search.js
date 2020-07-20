@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { BookContext } from '../context/BookContext';
+import BookList from '../components/BookList';
 
 function Search() {
   const [allBooks, allBooksIsLoading] = useContext(BookContext);
@@ -23,25 +23,6 @@ function Search() {
       }
     };
 
-    const listBooks = filteredBooks.map((book, index) => (
-      <div key={index} className="card shadow p-0">
-        <div className="image-container">
-          <img
-            className="img.fluid m-0"
-            width="100%"
-            src={book.image}
-            alt=""
-          ></img>
-        </div>
-        <Link to={book.url} key={book.isbn13}>
-          <div className="card-body pt-0 pb-4">
-            <h4 className="card-title">{book.title}</h4>
-            <p className="card-text bright-cyan">{book.authors}</p>
-          </div>
-        </Link>
-      </div>
-    ));
-
     content = (
       <React.Fragment>
         <h1>Search</h1>
@@ -54,13 +35,10 @@ function Search() {
             placeholder="Search for book"
           />
         </form>
-        <div className="card-columns" id="result-list">
-          {listBooks}
-        </div>
+        <BookList books={filteredBooks} booksIsLoading={false} />
       </React.Fragment>
     );
   }
-
   return content;
 }
 
