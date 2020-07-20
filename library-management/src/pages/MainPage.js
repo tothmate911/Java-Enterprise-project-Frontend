@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import BookList from '../components/BookList';
 import { BookContext } from '../context/BookContext';
 
-function MainPage() {
+const MainPage = () => {
   const [books, booksIsLoading] = useContext(BookContext);
 
   return (
@@ -11,6 +11,6 @@ function MainPage() {
       <BookList books={books} booksIsLoading={booksIsLoading} />
     </React.Fragment>
   );
-}
+};
 
 export default MainPage;
