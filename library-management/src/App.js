@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage';
 import Footer from './layout/Footer';
 import Categories from './pages/Categories';
 import { BookProvider } from './context/BookContext';
-import { StyleProvider } from './context/StyleContext';
+import { CategoryProvider } from './context/CategoryContext';
 import Book from './pages/Book';
 import Search from './pages/Search';
 import Category from './pages/Category';
@@ -14,8 +14,8 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <StyleProvider>
-          <BookProvider>
+        <BookProvider>
+          <CategoryProvider>
             <Header></Header>
             <div className="container p-5 mb-3">
               <Route exact path="/" component={MainPage} />
@@ -25,8 +25,8 @@ function App() {
               <Route path="/categories/:category" component={Category} />
             </div>
             <Footer></Footer>
-          </BookProvider>
-        </StyleProvider>
+          </CategoryProvider>
+        </BookProvider>
       </Router>
     </React.Fragment>
   );

@@ -1,16 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useApiCall from '../hooks/ApiCall';
 
 function Category() {
-  const getCategoryFromUrl = () => {
-    const urlSplitter = window.location.href.split('/');
-    return urlSplitter[urlSplitter.length - 1];
-  };
-
-  const category = getCategoryFromUrl();
+  const { category } = useParams();
   const urlBooksInCategory = `http://localhost:8080/books/category/${category}`;
-
   const [books, booksIsLoading] = useApiCall(urlBooksInCategory);
 
   let content = <h3>Loading {category} books...</h3>;

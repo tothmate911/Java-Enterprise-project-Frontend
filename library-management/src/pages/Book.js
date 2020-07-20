@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { BookContext } from '../context/BookContext';
-import { StyleContext } from '../context/StyleContext';
+import Button from '../styledComponents/Button';
 import noCover from '../components/no-cover.webp';
 import BeautyStars from 'beauty-stars';
 import { useParams } from 'react-router';
@@ -8,7 +8,6 @@ import { useParams } from 'react-router';
 function Book() {
   let { isbn13 } = useParams();
   const [books, booksIsLoading] = useContext(BookContext);
-  const [Button] = useContext(StyleContext);
 
   let content = <h3>Loading Book...</h3>;
 

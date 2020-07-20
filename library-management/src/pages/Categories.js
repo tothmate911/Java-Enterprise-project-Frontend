@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import useApiCall from '../hooks/ApiCall';
+
+import { CategoryContext } from '../context/CategoryContext';
 
 function Categories() {
-  const urlAllCategories = 'http://localhost:8080/books/categories';
-  const [categories, categoriesIsLoading] = useApiCall(urlAllCategories);
+  const [categories, categoriesIsLoading] = useContext(CategoryContext);
 
   let content = <h3>Loading categories...</h3>;
 
@@ -23,6 +23,7 @@ function Categories() {
         </div>
       )
     );
+
     content = (
       <div className="container">
         <div className="row">{categoryIterator}</div>
