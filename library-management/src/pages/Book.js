@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
-import { BookContext } from "../context/BookContext";
-import { StyleContext } from "../context/StyleContext";
-import noCover from "../components/no-cover.webp";
-import BeautyStars from "beauty-stars";
-import { useParams } from "react-router";
+import React, { useContext } from 'react';
+import { BookContext } from '../context/BookContext';
+import Button from '../styledComponents/Button';
+import noCover from '../components/no-cover.webp';
+import BeautyStars from 'beauty-stars';
+import { useParams } from 'react-router';
 
 function Book() {
   let { isbn13 } = useParams();
-  const [fetchedData, isLoading] = useContext(BookContext);
-  const [Button] = useContext(StyleContext);
+  const [books, booksIsLoading] = useContext(BookContext);
 
   let content = <h3>Loading Book...</h3>;
 
-  if (!isLoading && fetchedData) {
-    let book = fetchedData.find((book) => book.isbn13 === isbn13);
+  if (!booksIsLoading && books) {
+    let book = books.find((book) => book.isbn13 === isbn13);
     let {
       authors,
       title,
@@ -32,8 +31,8 @@ function Book() {
 
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
-        <tr>
-          <th style={{ textTransform: "capitalize" }}>{key}:</th>
+        <tr key={key}>
+          <th style={{ textTransform: 'capitalize' }}>{key}:</th>
           <td>{value.toString()}</td>
         </tr>
       );
@@ -54,7 +53,7 @@ function Book() {
         <div className="row">
           <div className="col-5 details pl-4 pr-4 pt-0">
             <div className="pt-2 pl-5 pr-5 pb-2">
-              <img width="100%" src={image} alt=""/>
+              <img width="100%" src={image} alt="" />
             </div>
             {tableOfDetails}
           </div>
