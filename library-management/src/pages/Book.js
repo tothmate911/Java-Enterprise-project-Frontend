@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
-import { BookContext } from '../context/BookContext';
-import Button from '../styledComponents/Button';
-import noCover from '../components/no-cover.webp';
-import BeautyStars from 'beauty-stars';
-import { useParams } from 'react-router';
+import React, { useContext, useState } from "react";
+import { BookContext } from "../context/BookContext";
+import Button from "../styledComponents/Button";
+import noCover from "../components/no-cover.webp";
+import BeautyStars from "beauty-stars";
+import { useParams } from "react-router";
+import useApiCall from "../hooks/ApiCall";
 
 function Book() {
   let { isbn13 } = useParams();
   const [books, booksIsLoading] = useContext(BookContext);
+  const [canBorrow, setCanBorrow] = useState(true);
 
   let content = <h3>Loading Book...</h3>;
 
@@ -15,6 +17,7 @@ function Book() {
     let book = books.find((book) => book.isbn13 === isbn13);
     let {
       authors,
+      available,
       title,
       subtitle,
       rating,
@@ -28,11 +31,12 @@ function Book() {
     } = book;
 
     let details = { year, publisher, language, pages, isbn10, isbn13 };
+    setCanBorrow(available);
 
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
         <tr key={key}>
-          <th style={{ textTransform: 'capitalize' }}>{key}:</th>
+          <th style={{ textTransform: "capitalize" }}>{key}:</th>
           <td>{value.toString()}</td>
         </tr>
       );
@@ -67,7 +71,9 @@ function Book() {
               onChange={(value) => this.setState({ value })}
             />
             <br />
-            <Button type="button">Borrow</Button>
+            <Button disabled={!canBorrow} type="button">
+              Borrow
+            </Button>
             <p className="mt-3">{desc}</p>
           </div>
         </div>
