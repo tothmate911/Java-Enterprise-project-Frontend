@@ -9,7 +9,7 @@ import axios from "axios";
 
 function Book() {
   let { isbn13 } = useParams();
-  let urlBorrow = `http://localhost:8080/books/getstatus/${isbn13}`;
+  let urlBorrow = `http://localhost:8080/borrow/getstatus/${isbn13}`;
   const [books, booksIsLoading] = useContext(BookContext);
   let [canBorrow, canBorrowIsLoading] = useApiCall(urlBorrow);
 
@@ -60,7 +60,7 @@ function Book() {
     }
 
     const handleBorrow = () => {
-      urlBorrow = `http://localhost:8080/books/borrow/${isbn13}`;
+      urlBorrow = `http://localhost:8080/borrow/${isbn13}`;
       axios.get(urlBorrow).then((response) => {
         status = response;
         window.location.reload(false);
