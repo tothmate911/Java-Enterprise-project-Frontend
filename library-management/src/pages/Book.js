@@ -5,13 +5,21 @@ import noCover from "../components/no-cover.webp";
 import BeautyStars from "beauty-stars";
 import { useParams } from "react-router";
 import useApiCall from "../hooks/ApiCall";
+import axios from "axios";
 
 function Book() {
   let { isbn13 } = useParams();
+  let urlBorrow = `http://localhost:8080/books/getstatus/${isbn13}`;
   const [books, booksIsLoading] = useContext(BookContext);
-  const [canBorrow, setCanBorrow] = useState(true);
+  let [canBorrow, canBorrowIsLoading] = useApiCall(urlBorrow);
 
   let content = <h3>Loading Book...</h3>;
+
+  let status = true;
+
+  if (!canBorrowIsLoading && canBorrow) {
+    status = canBorrow;
+  }
 
   if (!booksIsLoading && books) {
     let book = books.find((book) => book.isbn13 === isbn13);
@@ -31,7 +39,7 @@ function Book() {
     } = book;
 
     let details = { year, publisher, language, pages, isbn10, isbn13 };
-    setCanBorrow(available);
+    
 
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
@@ -52,12 +60,25 @@ function Book() {
       image = noCover;
     }
 
+    const handleBorrow = () => {
+      urlBorrow = `http://localhost:8080/books/borrow/${isbn13}`;
+      axios.get(urlBorrow).then((response) => {
+        status = response;
+      })
+    }
+
+    let imgClassNames = "";
+
+  if (!canBorrow) {
+    imgClassNames = "greycover";
+  }
+
     content = (
       <React.Fragment>
         <div className="row">
           <div className="col-5 details pl-4 pr-4 pt-0">
             <div className="pt-2 pl-5 pr-5 pb-2">
-              <img width="100%" src={image} alt="" />
+              <img width="100%" className={imgClassNames} src={image} alt="" />
             </div>
             {tableOfDetails}
           </div>
@@ -71,7 +92,7 @@ function Book() {
               onChange={(value) => this.setState({ value })}
             />
             <br />
-            <Button disabled={!canBorrow} type="button">
+            <Button disabled={canBorrow === false} type="button" onClick={handleBorrow}>
               Borrow
             </Button>
             <p className="mt-3">{desc}</p>
