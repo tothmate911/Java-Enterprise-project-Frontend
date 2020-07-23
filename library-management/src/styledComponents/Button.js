@@ -13,11 +13,15 @@ export default styled.button`
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited {
+  &:hover:enabled,
+  &:active:enabled,
+  &:focus:enabled,
+  &:visited:enabled {
     border: 2px solid #45a29e !important;
     color: #45a29e !important;
+  }
+  &:disabled {
+    border: 2px solid #143230;
+    color: #3b3b3b;
   }
 `;
