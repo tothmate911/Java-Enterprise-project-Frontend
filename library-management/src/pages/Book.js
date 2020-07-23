@@ -9,7 +9,7 @@ import axios from "axios";
 
 function Book() {
   let { isbn13 } = useParams();
-  let urlBorrow = `http://localhost:8080/borrow/getstatus/${isbn13}`;
+  let urlBorrow = `http://localhost:8080/books/getstatus/${isbn13}`;
   const [books, booksIsLoading] = useContext(BookContext);
   let [canBorrow, canBorrowIsLoading] = useApiCall(urlBorrow);
 
@@ -59,11 +59,30 @@ function Book() {
       image = noCover;
     }
 
+    let cancelButton;
+
+    let handleCancel = () => {
+      axios
+        .get(`http://localhost:8080/books/cancel/${isbn13}`)
+        .then((response) => {
+          status = response;
+          cancelButton = "";
+          window.location.reload(false);
+        });
+    };
+
+    const cancelButtonContent = (
+      <Button type="button" onClick={handleCancel}>
+        Cancel
+      </Button>
+    );
+
     const handleBorrow = () => {
-      urlBorrow = `http://localhost:8080/borrow/${isbn13}`;
+      urlBorrow = `http://localhost:8080/books/${isbn13}`;
       axios.get(urlBorrow).then((response) => {
         status = response;
-        window.location.reload(false);
+        cancelButton = cancelButtonContent;
+        window.location.reload();
       });
     };
 
@@ -77,6 +96,7 @@ function Book() {
           The book is checked out until: {duedate.substring(0, 10)}
         </p>
       );
+      cancelButton = cancelButtonContent;
     }
 
     content = (
@@ -105,6 +125,7 @@ function Book() {
             >
               Borrow
             </Button>
+            {cancelButton}
             <br />
             {message}
             <p className="mt-3">{desc}</p>
