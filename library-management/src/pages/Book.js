@@ -25,7 +25,6 @@ function Book() {
     let book = books.find((book) => book.isbn13 === isbn13);
     let {
       authors,
-      available,
       title,
       subtitle,
       rating,
@@ -64,13 +63,14 @@ function Book() {
       urlBorrow = `http://localhost:8080/books/borrow/${isbn13}`;
       axios.get(urlBorrow).then((response) => {
         status = response;
+        window.location.reload(false);
       });
     };
 
     let imgClassNames = "";
     let message = "";
 
-    if (!canBorrow) {
+    if (!canBorrow && duedate !== null) {
       imgClassNames = "greycover";
       message = (
         <p className="yellow">
