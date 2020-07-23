@@ -36,10 +36,10 @@ function Book() {
       language,
       pages,
       isbn10,
+      duedate,
     } = book;
 
     let details = { year, publisher, language, pages, isbn10, isbn13 };
-    
 
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
@@ -64,14 +64,20 @@ function Book() {
       urlBorrow = `http://localhost:8080/books/borrow/${isbn13}`;
       axios.get(urlBorrow).then((response) => {
         status = response;
-      })
-    }
+      });
+    };
 
     let imgClassNames = "";
+    let message = "";
 
-  if (!canBorrow) {
-    imgClassNames = "greycover";
-  }
+    if (!canBorrow) {
+      imgClassNames = "greycover";
+      message = (
+        <p className="yellow">
+          The book is checked out until: {duedate.substring(0, 10)}
+        </p>
+      );
+    }
 
     content = (
       <React.Fragment>
@@ -92,9 +98,15 @@ function Book() {
               onChange={(value) => this.setState({ value })}
             />
             <br />
-            <Button disabled={canBorrow === false} type="button" onClick={handleBorrow}>
+            <Button
+              disabled={canBorrow === false}
+              type="button"
+              onClick={handleBorrow}
+            >
               Borrow
             </Button>
+            <br />
+            {message}
             <p className="mt-3">{desc}</p>
           </div>
         </div>
