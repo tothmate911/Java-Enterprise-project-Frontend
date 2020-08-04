@@ -9,6 +9,7 @@ import { CategoryProvider } from "./context/CategoryContext";
 import Book from "./pages/Book";
 import Search from "./pages/Search";
 import Category from "./pages/Category";
+import User from "./pages/User";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/search" component={Search} />
               <Route path="/categories/:category" component={Category} />
+              <Route path="/user/:username" component={User} />
             </div>
             <Footer></Footer>
           </CategoryProvider>

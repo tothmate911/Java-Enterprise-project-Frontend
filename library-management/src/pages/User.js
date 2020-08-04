@@ -4,14 +4,19 @@ import useApiCall from "../hooks/ApiCall";
 import BookList from "../components/BookList";
 
 function User() {
-  const { user } = useParams();
-  const urlBooksInCategory = `http://localhost:8080/books/user/${user}`;
+  const { username } = useParams();
+  const urlBooksInCategory = `http://localhost:8080/books/user/${username}`;
   const [books, booksIsLoading] = useApiCall(urlBooksInCategory);
 
-  let content = <h3>Loading {user} books...</h3>;
+  let content = <h3>Loading {username} books...</h3>;
 
   if (!booksIsLoading && books) {
-    content = <BookList books={books} booksisLoading={booksIsLoading} />;
+    content = (
+      <div>
+        <h3 className="p-3">My checked out books: </h3>
+        <BookList books={books} booksisLoading={booksIsLoading} />
+      </div>
+    );
   }
   return content;
 }
