@@ -1,14 +1,12 @@
-import React from "react";
-import Header from "./layout/Header";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import Footer from "./layout/Footer";
-import Categories from "./pages/Categories";
-import { BookProvider } from "./context/BookContext";
-import { CategoryProvider } from "./context/CategoryContext";
-import Book from "./pages/Book";
-import Search from "./pages/Search";
-import Category from "./pages/Category";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import MainPage from './pages/MainPage';
+import Footer from './layout/Footer';
+import Login from './pages/Login';
+
+import { BookProvider } from './context/BookContext';
+import { CategoryProvider } from './context/CategoryContext';
 
 function App() {
   return (
@@ -16,14 +14,10 @@ function App() {
       <Router>
         <BookProvider>
           <CategoryProvider>
-            <Header></Header>
-            <div className="container p-5 mb-3">
-              <Route exact path="/" component={MainPage} />
-              <Route path="/book/:isbn13" component={Book} />
-              <Route exact path="/categories" component={Categories} />
-              <Route exact path="/search" component={Search} />
-              <Route path="/categories/:category" component={Category} />
-            </div>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/mainpage" component={MainPage} />
+            </Switch>
             <Footer></Footer>
           </CategoryProvider>
         </BookProvider>
