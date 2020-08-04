@@ -20,8 +20,8 @@ const MainPage = () => {
         <BookList books={books} booksIsLoading={booksIsLoading} />
         <Switch>
           <Route path="/book/:isbn13" component={Book} />
-          <Route exact path="/categories" component={Categories} />
-          <Route exact path="/search" component={Search} />
+          <Route path="/categories" component={Categories} />
+          <Route path="/search" component={Search} />
           <Route path="/categories/:category" component={Category} />
         </Switch>
       </div>

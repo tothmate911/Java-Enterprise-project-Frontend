@@ -16,7 +16,7 @@ function App() {
           <CategoryProvider>
             <Switch>
               <Route exact path="/" component={Login} />
-              <Route exact path="/mainpage" component={MainPage} />
+              <Route path="/home" component={MainPage} />
             </Switch>
             <Footer></Footer>
           </CategoryProvider>
