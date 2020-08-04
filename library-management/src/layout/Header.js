@@ -1,25 +1,10 @@
 import React from "react";
 import logo from "./logo.svg";
 import { Link } from "react-router-dom";
-import Button from "../styledComponents/Button";
 
 function Header() {
   const username = "user123";
-  const userButton = (
-    <Link className="nav-item nav-link" key={username} to={`/user/${username}`}>
-      <i class="fas fa-user"></i> {username}
-    </Link>
-  );
 
-  const signIn = (
-    <div className="navbar-nav">
-      <Link className="nav-item nav-link">
-        Sign In <i class="fas fa-sign-in-alt"></i>
-      </Link>
-    </div>
-  );
-
-  const user = username ? userButton : signIn;
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
@@ -52,7 +37,15 @@ function Header() {
             <Link className="nav-item nav-link" to="/search">
               Search
             </Link>
-            <div className="d-flex justify-content-end w-100">{user}</div>
+            <div className="d-flex justify-content-end w-100">
+              <Link
+                className="nav-item nav-link"
+                key={username}
+                to={`/user/${username}`}
+              >
+                <i class="fas fa-user"></i> {username}
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
