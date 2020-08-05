@@ -8,7 +8,7 @@ function User() {
   const urlBooksInCategory = `http://localhost:8080/books/user/${username}`;
   const [books, booksIsLoading] = useApiCall(urlBooksInCategory);
 
-  let content = <h3>Loading {username} books...</h3>;
+  let content = <h3>Loading books...</h3>;
 
   if (!booksIsLoading && books) {
     content = (

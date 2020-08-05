@@ -40,7 +40,7 @@ const SignUp = () => {
       <div className="welcome-container">
         <h1 className="welcome"> Welcome to our library!</h1>
       </div>
-      <div className="container">
+      <div className="page container">
         <div className="d-flex justify-content-center h-100">
           <div className="card">
             <div className="card-header">

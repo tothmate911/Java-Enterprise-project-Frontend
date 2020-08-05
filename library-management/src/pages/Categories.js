@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import { CategoryContext } from '../context/CategoryContext';
+import { CategoryContext } from "../context/CategoryContext";
 
 function Categories() {
   const [categories, categoriesIsLoading] = useContext(CategoryContext);
@@ -25,7 +25,7 @@ function Categories() {
     );
 
     content = (
-      <div className="container">
+      <div className="page container">
         <div className="row">{categoryIterator}</div>
       </div>
     );
