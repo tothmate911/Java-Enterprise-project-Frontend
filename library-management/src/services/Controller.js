@@ -15,7 +15,7 @@ const Controller = () => {
       <div className="container p-5 mb-3">
         <Switch>
           <Route path="/home/book/:isbn13" component={Book} />
-          <Route path="/home/categories" component={Categories} />
+          <Route exact path="/home/categories" component={Categories} />
           <Route exact path="/home/search" component={Search} />
           <Route path="/home/categories/:category" component={Category} />
           <Route path="/home" component={MainPage} />

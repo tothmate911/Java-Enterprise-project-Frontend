@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
 
-import MainPage from './pages/MainPage';
 import Footer from './layout/Footer';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -12,10 +10,6 @@ import { CategoryProvider } from './context/CategoryContext';
 import Controller from './services/Controller';
 
 function App() {
-  // axios.interceptors.request.use(function (config) {
-  //   config.headers.
-  // })
-
   return (
     <React.Fragment>
       <Router>

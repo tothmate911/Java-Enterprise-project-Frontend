@@ -1,8 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Link } from 'react-router-dom';
+import Button from '../styledComponents/Button';
 
 function Header() {
+  const logout = () => {
+    localStorage.removeItem('token');
+  };
+
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
@@ -35,6 +40,7 @@ function Header() {
             <Link className="nav-item nav-link" to="/home/search">
               Search
             </Link>
+            <Button onClick={logout}>Log out</Button>
           </div>
         </div>
       </nav>
