@@ -28,6 +28,34 @@ function Header() {
     localStorage.removeItem("token");
   };
 
+  const dropdownUser = (
+    <div>
+      <a
+        className="nav-link dropdown-toggle"
+        href="/home"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {" "}
+      </a>
+      <div
+        className="dropdown-menu dropdown-menu-right bg-dark"
+        aria-labelledby="navbarDropdown"
+      >
+        <a
+          className="dropdown-item bg-dark text-light"
+          href="/"
+          onClick={logout}
+        >
+          Log Out
+        </a>
+      </div>
+    </div>
+  );
+
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
@@ -60,8 +88,10 @@ function Header() {
             <Link className="nav-item nav-link" to="/home/search">
               Search
             </Link>
-            <Button onClick={logout}>Log out</Button>
-            <div className="d-flex justify-content-end w-100">{user}</div>
+            <div className="d-flex justify-content-end w-100">
+              {user}
+              {dropdownUser}
+            </div>
           </div>
         </div>
       </nav>
