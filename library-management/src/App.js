@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
 
-import MainPage from './pages/MainPage';
 import Footer from './layout/Footer';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';

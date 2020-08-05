@@ -13,6 +13,7 @@ const Login = () => {
         password
     );
     const loginUrl = 'http://localhost:8080/auth/signin';
+
     axios
       .post(loginUrl, {
         username: username,
@@ -49,7 +50,7 @@ const Login = () => {
             </div>
 
             <div className="card-body">
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text">
@@ -84,9 +85,10 @@ const Login = () => {
                 <div className="form-group">
                   <input
                     id="login"
-                    type="submit"
+                    // type="submit"
                     value="Login"
                     className="btn float-right login_btn"
+                    onClick={handleSubmit}
                   ></input>
                 </div>
               </form>
