@@ -187,7 +187,3 @@ th {
 .table-book-titles {
   display: inline-block;
 }
-
-.table-user {
-  columns: white !important;
-}
