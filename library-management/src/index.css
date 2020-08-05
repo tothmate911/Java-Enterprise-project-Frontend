@@ -4,15 +4,15 @@ html {
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -69,7 +69,7 @@ td {
 .bright-cyan {
   color: #45a29e !important;
 }
-.container {
+.page .container {
   min-height: 800px;
   margin-top: 30px;
 }
@@ -149,4 +149,41 @@ input:focus {
 .welcome-container {
   text-align: center;
   padding: 30px 0;
+}
+
+.table-responsive td,
+th {
+  font-size: medium;
+  line-height: initial;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.table-title {
+  font-size: large;
+  color: #45a29e;
+  padding-left: 0 !important;
+}
+.table-subtitle {
+  font-size: medium;
+  color: #45a29e;
+}
+
+.table-authors {
+  font-style: italic;
+  font-size: small;
+  color: gray;
+}
+
+.table-img {
+  max-height: 200px;
+}
+
+.table-img-container {
+  max-width: 200px !important;
+  vertical-align: middle;
+}
+
+.table-book-titles {
+  display: inline-block;
 }

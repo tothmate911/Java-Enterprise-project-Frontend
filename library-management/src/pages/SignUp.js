@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const SignUp = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordAgain, setPasswordAgain] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
 
   const handleSubmit = () => {
     if (password === passwordAgain) {
       console.log(
-        'trying to sign up with \n username: ' +
+        "trying to sign up with \n username: " +
           username +
-          ', password: ' +
+          ", password: " +
           password +
-          ', email: ' +
+          ", email: " +
           email
       );
-      const loginUrl = 'http://localhost:8080/auth/signup';
+      const loginUrl = "http://localhost:8080/auth/signup";
       axios
         .post(loginUrl, {
           username: username,
@@ -27,7 +27,8 @@ const SignUp = () => {
         .then((response) => {
           const token = response.data.token;
           console.log(token);
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
+          localStorage.setItem("username", username);
         });
     } else {
       alert("The two passwords don't match!");
@@ -39,7 +40,7 @@ const SignUp = () => {
       <div className="welcome-container">
         <h1 className="welcome"> Welcome to our library!</h1>
       </div>
-      <div className="container">
+      <div className="page container">
         <div className="d-flex justify-content-center h-100">
           <div className="card">
             <div className="card-header">
