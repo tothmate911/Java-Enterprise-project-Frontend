@@ -1,10 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Link } from 'react-router-dom';
+import React from "react";
+import logo from "./logo.svg";
+import { Link } from "react-router-dom";
 import Button from '../styledComponents/Button';
 
 function Header() {
-  const logout = () => {
+  const username = "admin";
+
+  const admin = (
+    <Link className="nav-item nav-link" key={username} to="/admin">
+      <i class="fas fa-user"></i> Administrator
+    </Link>
+  );
+
+  const regularUser = (
+    <Link className="nav-item nav-link" key={username} to={`/user/${username}`}>
+      <i class="fas fa-user"></i> {username}
+    </Link>
+  );
+
+  const user = username === "admin" ? admin : regularUser;
+
+const logout = () => {
     localStorage.removeItem('token');
   };
 
@@ -33,7 +49,7 @@ function Header() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
+          <div className="navbar-nav w-100">
             <Link className="nav-item nav-link" to="/home/categories">
               Categories <span className="sr-only">(current)</span>
             </Link>
@@ -41,6 +57,7 @@ function Header() {
               Search
             </Link>
             <Button onClick={logout}>Log out</Button>
+            <div className="d-flex justify-content-end w-100">{user}</div>
           </div>
         </div>
       </nav>
