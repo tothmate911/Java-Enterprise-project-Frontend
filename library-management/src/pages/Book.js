@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
-import { BookContext } from "../context/BookContext";
-import Button from "../styledComponents/Button";
-import noCover from "../components/no-cover.webp";
-import BeautyStars from "beauty-stars";
-import { useParams } from "react-router";
-import useApiCall from "../hooks/ApiCall";
-import axios from "axios";
+import React, { useContext } from 'react';
+import { BookContext } from '../context/BookContext';
+import Button from '../styledComponents/Button';
+import noCover from '../components/no-cover.webp';
+import BeautyStars from 'beauty-stars';
+import { useParams } from 'react-router';
+import useApiCall from '../hooks/ApiCall';
+import axios from 'axios';
 
 function Book() {
   let { isbn13 } = useParams();
@@ -43,7 +43,7 @@ function Book() {
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
         <tr key={key}>
-          <th style={{ textTransform: "capitalize" }}>{key}:</th>
+          <th style={{ textTransform: 'capitalize' }}>{key}:</th>
           <td>{value.toString()}</td>
         </tr>
       );
@@ -66,7 +66,7 @@ function Book() {
         .get(`http://localhost:8080/books/cancel/${isbn13}`)
         .then((response) => {
           status = response;
-          cancelButton = "";
+          cancelButton = '';
           window.location.reload(false);
         });
     };
@@ -86,11 +86,11 @@ function Book() {
       });
     };
 
-    let imgClassNames = "";
-    let message = "";
+    let imgClassNames = '';
+    let message = '';
 
     if (!canBorrow && duedate !== null) {
-      imgClassNames = "greycover";
+      imgClassNames = 'greycover';
       message = (
         <p className="yellow">
           The book is checked out until: {duedate.substring(0, 10)}
