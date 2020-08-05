@@ -15,7 +15,7 @@ function Categories() {
           <div className="letter">{key}</div>
           <div key={index}>
             {value.map((element) => (
-              <Link key={element} to={`/categories/${element}`}>
+              <Link key={element} to={`/home/categories/${element}`}>
                 <div className="pt-1 pr-3">{element}</div>
               </Link>
             ))}

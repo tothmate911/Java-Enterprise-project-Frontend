@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import { Link } from "react-router-dom";
+import Button from '../styledComponents/Button';
 
 function Header() {
   const username = "admin";
@@ -19,10 +20,14 @@ function Header() {
 
   const user = username === "admin" ? admin : regularUser;
 
+const logout = () => {
+    localStorage.removeItem('token');
+  };
+
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/home">
           <img
             src={logo}
             width="auto"
@@ -45,12 +50,13 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav w-100">
-            <Link className="nav-item nav-link" to="/categories">
-              Categories
+            <Link className="nav-item nav-link" to="/home/categories">
+              Categories <span className="sr-only">(current)</span>
             </Link>
-            <Link className="nav-item nav-link" to="/search">
+            <Link className="nav-item nav-link" to="/home/search">
               Search
             </Link>
+            <Button onClick={logout}>Log out</Button>
             <div className="d-flex justify-content-end w-100">{user}</div>
           </div>
         </div>

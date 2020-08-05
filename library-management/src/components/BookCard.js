@@ -3,16 +3,18 @@ import noCover from './no-cover.webp';
 import { Link } from 'react-router-dom';
 
 const BookCard = (props) => {
-  let { authors, title, image, url, isbn13, available } = props.book;
-  let imgClassNames = "img.fluid m-0";
+  let { authors, title, image, isbn13, available } = props.book;
+  let imgClassNames = 'img.fluid m-0';
 
   if (!available) {
-    imgClassNames = "img.fluid m-0 greycover";
+    imgClassNames = 'img.fluid m-0 greycover';
   }
 
   if (!image) {
     image = noCover;
   }
+
+  const url = `/home/book/${isbn13}`;
 
   return (
     <div className="card shadow p-0">

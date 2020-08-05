@@ -1,18 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BookContext } from "../context/BookContext";
-import BookList from "../components/BookList";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import BookList from '../components/BookList';
+import axios from 'axios';
 
 function Search() {
   const [filteredBooks, setFilteredBooks] = useState([]);
 
   let content = <h3>Loading...</h3>;
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('@');
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/books/searchby/${input}`)
+      .get(`http://localhost:8080/books/searchby/${input}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
         setFilteredBooks(response.data);
       });
@@ -21,7 +24,7 @@ function Search() {
   const handleQuery = (event) => {
     const fieldInput = event.target.value.toLowerCase();
     setInput(fieldInput);
-    //    if (fieldInput.length < 1) setInput("");
+    if (fieldInput.length < 1) setInput('@');
   };
 
   content = (
