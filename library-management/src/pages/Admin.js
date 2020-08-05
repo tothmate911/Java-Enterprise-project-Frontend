@@ -3,7 +3,7 @@ import UserList from "../components/UserList";
 import useApiCall from "../hooks/ApiCall";
 
 function Admin() {
-  const urlAllUsers = "http://localhost:8080/books/aaaaaaaaaaaaaaaaaa";
+  const urlAllUsers = "http://localhost:8080/books/admin";
   const [users, usersAreLoading] = useApiCall(urlAllUsers);
 
   return (

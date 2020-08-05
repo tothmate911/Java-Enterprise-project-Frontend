@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
     console.log(
-      'trying to sign in with \n username: ' +
+      "trying to sign in with \n username: " +
         username +
-        ', password: ' +
+        ", password: " +
         password
     );
-    const loginUrl = 'http://localhost:8080/auth/signin';
+    const loginUrl = "http://localhost:8080/auth/signin";
 
     axios
       .post(loginUrl, {
@@ -22,7 +22,8 @@ const Login = () => {
       .then((response) => {
         const token = response.data.token;
         console.log(token);
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
       });
   };
 

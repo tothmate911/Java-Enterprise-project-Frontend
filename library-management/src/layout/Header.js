@@ -1,27 +1,31 @@
 import React from "react";
 import logo from "./logo.svg";
 import { Link } from "react-router-dom";
-import Button from '../styledComponents/Button';
+import Button from "../styledComponents/Button";
 
 function Header() {
-  const username = "admin";
+  let username = localStorage.getItem("username");
 
   const admin = (
-    <Link className="nav-item nav-link" key={username} to="/admin">
-      <i class="fas fa-user"></i> Administrator
+    <Link className="nav-item nav-link" key="admin" to="/home/admin">
+      <i className="fas fa-user"></i> Administrator
     </Link>
   );
 
   const regularUser = (
-    <Link className="nav-item nav-link" key={username} to={`/user/${username}`}>
-      <i class="fas fa-user"></i> {username}
+    <Link
+      className="nav-item nav-link"
+      key={username}
+      to={`/home/user/${username}`}
+    >
+      <i className="fas fa-user"></i> {username}
     </Link>
   );
 
   const user = username === "admin" ? admin : regularUser;
 
-const logout = () => {
-    localStorage.removeItem('token');
+  const logout = () => {
+    localStorage.removeItem("token");
   };
 
   return (
