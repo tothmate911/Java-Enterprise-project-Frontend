@@ -3,7 +3,21 @@ import logo from "./logo.svg";
 import { Link } from "react-router-dom";
 
 function Header() {
-  const username = "user123";
+  const username = "admin";
+
+  const admin = (
+    <Link className="nav-item nav-link" key={username} to="/admin">
+      <i class="fas fa-user"></i> Administrator
+    </Link>
+  );
+
+  const regularUser = (
+    <Link className="nav-item nav-link" key={username} to={`/user/${username}`}>
+      <i class="fas fa-user"></i> {username}
+    </Link>
+  );
+
+  const user = username === "admin" ? admin : regularUser;
 
   return (
     <React.Fragment>
@@ -37,15 +51,7 @@ function Header() {
             <Link className="nav-item nav-link" to="/search">
               Search
             </Link>
-            <div className="d-flex justify-content-end w-100">
-              <Link
-                className="nav-item nav-link"
-                key={username}
-                to={`/user/${username}`}
-              >
-                <i class="fas fa-user"></i> {username}
-              </Link>
-            </div>
+            <div className="d-flex justify-content-end w-100">{user}</div>
           </div>
         </div>
       </nav>

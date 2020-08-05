@@ -1,5 +1,5 @@
-import React from 'react';
-import BookCard from '../components/BookCard';
+import React from "react";
+import BookCard from "./BookCard";
 
 const BookList = ({ books, booksIsLoading }) => {
   let content = <h3>Loading Books...</h3>;
