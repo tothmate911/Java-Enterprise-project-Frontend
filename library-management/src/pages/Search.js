@@ -11,7 +11,11 @@ function Search() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/books/searchby/${input}`)
+      .get(`http://localhost:8080/books/searchby/${input}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
         setFilteredBooks(response.data);
       });

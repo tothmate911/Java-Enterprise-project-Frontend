@@ -10,10 +10,6 @@ import { CategoryProvider } from './context/CategoryContext';
 import Controller from './services/Controller';
 
 function App() {
-  // axios.interceptors.request.use(function (config) {
-  //   config.headers.
-  // })
-
   return (
     <React.Fragment>
       <Router>

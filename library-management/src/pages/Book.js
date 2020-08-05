@@ -63,7 +63,11 @@ function Book() {
 
     let handleCancel = () => {
       axios
-        .get(`http://localhost:8080/books/cancel/${isbn13}`)
+        .get(`http://localhost:8080/books/cancel/${isbn13}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
         .then((response) => {
           status = response;
           cancelButton = '';

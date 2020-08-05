@@ -8,10 +8,17 @@ const useApiCall = (url) => {
   useEffect(() => {
     console.log(`sending request to ${url}`);
     setLoading(true);
-    axios.get(url).then((response) => {
-      setFetchedData(response.data);
-      setLoading(false);
-    });
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setFetchedData(response.data);
+        setLoading(false);
+      });
   }, [url]);
 
   return [fetchedData, isLoading];
