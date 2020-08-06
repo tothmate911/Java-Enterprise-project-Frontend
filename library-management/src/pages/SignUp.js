@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const SignUp = () => {
@@ -7,16 +7,81 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
 
-  const handleSubmit = () => {
-    if (password === passwordAgain) {
-      console.log(
-        "trying to sign up with \n username: " +
-          username +
-          ", password: " +
-          password +
-          ", email: " +
-          email
-      );
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const usernameValidation = (username) => {
+    if (username.trim() === "") {
+      return "Username is required";
+    }
+    if (username.trim().length < 6 || username.trim().length > 20) {
+      return "Username must be 6-20 characters";
+    }
+    if (/^[a-zA-Z0-9_]*$/.test(username)) {
+      return null;
+    }
+    return "Invalid characters";
+  };
+
+  const emailValidation = (email) => {
+    if (email.trim() === "") {
+      return "Email is required";
+    }
+    if (
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        email
+      )
+    ) {
+      return null;
+    }
+    return "Please enter a valid email";
+  };
+
+  const passwordValidation = (password, passwordAgain) => {
+    if (password.trim() === "") {
+      return "Password is required";
+    }
+    if (password !== passwordAgain) {
+      return "The two passwords don't match!";
+    }
+    if (password.trim().length < 6 || password.trim().length > 20) {
+      return "Password must be 6-20 characters";
+    }
+    if (/^([a-zA-Z0-9@*#]{6,20})$/.test(password)) {
+      return null;
+    }
+    return "Invalid characters.";
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUsernameError(usernameValidation(username));
+    setEmailError(emailValidation(email));
+    setPasswordError(passwordValidation(password, passwordAgain));
+  };
+
+  const login = () => {
+    const loginUrl = "http://localhost:8080/auth/signin";
+    axios
+      .post(loginUrl, {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        const token = response.data.token;
+        console.log(token);
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
+      });
+  };
+
+  useEffect(() => {
+    if (
+      usernameError === null &&
+      emailError === null &&
+      (passwordError === null || passwordError === "")
+    ) {
       const loginUrl = "http://localhost:8080/auth/register";
       axios
         .post(loginUrl, {
@@ -25,15 +90,14 @@ const SignUp = () => {
           email: email,
         })
         .then((response) => {
-          const token = response.data.token;
-          console.log(token);
-          localStorage.setItem("token", token);
-          localStorage.setItem("username", username);
+          if (response.data === true) {
+            login();
+          } else {
+            alert("Username has already been registered.");
+          }
         });
-    } else {
-      alert("The two passwords don't match!");
     }
-  };
+  });
 
   return (
     <React.Fragment>
@@ -74,6 +138,7 @@ const SignUp = () => {
                     onChange={(event) => setUsername(event.target.value)}
                   />
                 </div>
+                <p className="text-warning">{usernameError}</p>
 
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
@@ -89,7 +154,7 @@ const SignUp = () => {
                     onChange={(event) => setEmail(event.target.value)}
                   />
                 </div>
-
+                <p className="text-warning">{emailError}</p>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text">
@@ -122,12 +187,13 @@ const SignUp = () => {
                     }}
                   />
                 </div>
+                <p className="text-warning">{passwordError}</p>
 
                 <div className="form-group">
                   <input
                     id="login"
                     type="submit"
-                    value="Login"
+                    value="Sign up"
                     className="btn float-right login_btn"
                   ></input>
                 </div>
