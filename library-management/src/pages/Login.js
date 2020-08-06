@@ -1,31 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    console.log(
-      "trying to sign in with \n username: " +
-        username +
-        ", password: " +
-        password
-    );
-    const loginUrl = "http://localhost:8080/auth/signin";
+  const [userCredentialError, setUserCredentialError] = useState("");
+  const [correctCredentials, setCorrect] = useState(false);
 
-    axios
-      .post(loginUrl, {
-        username: username,
-        password: password,
-      })
-      .then((response) => {
-        const token = response.data.token;
-        console.log(token);
-        localStorage.setItem("token", token);
-        localStorage.setItem("username", username);
-      });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      /^[a-zA-Z0-9_]{3,20}$/.test(username) &&
+      /^([a-zA-Z0-9@*#]{3,20})$/.test(password)
+    ) {
+      setCorrect(true);
+      setUserCredentialError("");
+    } else {
+      setCorrect(false);
+      setUserCredentialError("Invalid username or password.");
+    }
   };
+
+  useEffect(() => {
+    if (correctCredentials) {
+      const loginUrl = "http://localhost:8080/auth/signin";
+
+      axios
+        .post(loginUrl, {
+          username: username,
+          password: password,
+        })
+        .then((response) => {
+          const token = response.data.token;
+          console.log(token);
+          localStorage.setItem("token", token);
+          localStorage.setItem("username", username);
+        });
+    }
+  }, [correctCredentials, username, password]);
 
   return (
     <React.Fragment>
@@ -51,7 +65,7 @@ const Login = () => {
             </div>
 
             <div className="card-body">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text">
@@ -66,6 +80,7 @@ const Login = () => {
                     onChange={(event) => setUsername(event.target.value)}
                   />
                 </div>
+
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text">
@@ -82,14 +97,14 @@ const Login = () => {
                     }}
                   />
                 </div>
+                <p className="text-warning">{userCredentialError}</p>
 
                 <div className="form-group">
                   <input
                     id="login"
-                    // type="submit"
+                    type="submit"
                     value="Login"
                     className="btn float-right login_btn"
-                    onClick={handleSubmit}
                   ></input>
                 </div>
               </form>
