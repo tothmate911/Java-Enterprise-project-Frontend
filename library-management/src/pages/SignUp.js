@@ -17,7 +17,7 @@ const SignUp = () => {
           ", email: " +
           email
       );
-      const loginUrl = "http://localhost:8080/auth/signup";
+      const loginUrl = "http://localhost:8080/auth/register";
       axios
         .post(loginUrl, {
           username: username,
