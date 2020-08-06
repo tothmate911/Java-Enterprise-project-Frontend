@@ -1,10 +1,11 @@
-import React from "react";
-import logo from "./logo.svg";
-import { Link } from "react-router-dom";
-import Button from "../styledComponents/Button";
+import React from 'react';
+import logo from './logo.svg';
+import { Link, useHistory } from 'react-router-dom';
 
 function Header() {
-  let username = localStorage.getItem("username");
+  let username = localStorage.getItem('username');
+
+  let history = useHistory();
 
   const admin = (
     <Link className="nav-item nav-link" key="admin" to="/home/admin">
@@ -22,10 +23,11 @@ function Header() {
     </Link>
   );
 
-  const user = username === "admin" ? admin : regularUser;
+  const user = username === 'admin' ? admin : regularUser;
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
+    history.push('/');
   };
 
   const dropdownUser = (
@@ -39,7 +41,7 @@ function Header() {
         aria-haspopup="true"
         aria-expanded="false"
       >
-        {" "}
+        {' '}
       </a>
       <div
         className="dropdown-menu dropdown-menu-right bg-dark"

@@ -7,6 +7,8 @@ const useApiCall = (url) => {
 
   useEffect(() => {
     console.log(`sending request to ${url}`);
+
+    console.log(localStorage.getItem('token'));
     setLoading(true);
     axios
       .get(url, {
@@ -18,6 +20,9 @@ const useApiCall = (url) => {
         console.log(response);
         setFetchedData(response.data);
         setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, [url]);
 
