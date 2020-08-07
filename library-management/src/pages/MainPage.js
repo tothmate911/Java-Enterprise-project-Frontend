@@ -21,7 +21,6 @@ const MainPage = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         setBooks(response.data);
         setBooksIsLoading(false);
       })
