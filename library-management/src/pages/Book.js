@@ -1,16 +1,41 @@
-import React, { useContext } from "react";
-import { BookContext } from "../context/BookContext";
-import Button from "../styledComponents/Button";
-import noCover from "../components/no-cover.webp";
-import BeautyStars from "beauty-stars";
-import { useParams } from "react-router";
-import useApiCall from "../hooks/ApiCall";
-import axios from "axios";
+import React, { useContext, useState, useEffect } from 'react';
+import { BookContext } from '../context/BookContext';
+import Button from '../styledComponents/Button';
+import noCover from '../components/no-cover.webp';
+import BeautyStars from 'beauty-stars';
+import { useParams } from 'react-router';
+import useApiCall from '../hooks/ApiCall';
+import axios from 'axios';
 
 function Book() {
-  let { isbn13 } = useParams();
-  let urlBorrow = `http://localhost:8080/books/getstatus/${isbn13}`;
-  const [books, booksIsLoading] = useContext(BookContext);
+  let { id } = useParams();
+  let urlBorrow = `http://localhost:8080/books/getstatus/${id}`;
+
+  const [book, setBook] = useState([]);
+  const [bookIsLoading, setBookIsLoading] = useState(false);
+
+  useEffect(() => {
+    const urlBook = `http://localhost:8080/books/${id}`;
+    console.log('BookPage: sending request to: ' + urlBook);
+    setBookIsLoading(true);
+    axios
+      .get(urlBook, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((response) => {
+        console.log('books after set books in Book Page:');
+        console.log(response.data);
+        setBook(response.data);
+        console.log(book);
+        setBookIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [book, id]);
+
   let [canBorrow, canBorrowIsLoading] = useApiCall(urlBorrow);
 
   let content = <h3>Loading Book...</h3>;
@@ -21,8 +46,10 @@ function Book() {
     status = canBorrow;
   }
 
-  if (!booksIsLoading && books) {
-    let book = books.find((book) => book.isbn13 === isbn13);
+  if (!bookIsLoading && book) {
+    // let book = books.find((book) => book.isbn13 === isbn13);
+    console.log('book in Book page:');
+    console.log(book);
     let {
       authors,
       title,
@@ -36,6 +63,7 @@ function Book() {
       pages,
       isbn10,
       duedate,
+      isbn13,
     } = book;
 
     let details = { year, publisher, language, pages, isbn10, isbn13 };
@@ -43,7 +71,7 @@ function Book() {
     let tableContent = Object.entries(details).map(([key, value]) => {
       return (
         <tr key={key}>
-          <th style={{ textTransform: "capitalize" }}>{key}:</th>
+          <th style={{ textTransform: 'capitalize' }}>{key}:</th>
           <td>{value.toString()}</td>
         </tr>
       );
@@ -65,12 +93,12 @@ function Book() {
       axios
         .get(`http://localhost:8080/books/borrow/cancel/${isbn13}`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         })
         .then((response) => {
           status = response;
-          cancelButton = "";
+          cancelButton = '';
           window.location.reload(false);
         });
     };
@@ -90,11 +118,11 @@ function Book() {
       });
     };
 
-    let imgClassNames = "";
-    let message = "";
+    let imgClassNames = '';
+    let message = '';
 
     if (!canBorrow && duedate !== null) {
-      imgClassNames = "greycover";
+      imgClassNames = 'greycover';
       message = (
         <p className="yellow">
           The book is checked out until: {duedate.substring(0, 10)}

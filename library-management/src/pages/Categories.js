@@ -1,10 +1,34 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import { CategoryContext } from "../context/CategoryContext";
+import { CategoryContext } from '../context/CategoryContext';
 
 function Categories() {
-  const [categories, categoriesIsLoading] = useContext(CategoryContext);
+  // const [categories, categoriesIsLoading] = useContext(CategoryContext);
+
+  const [categories, setCaetgories] = useState([]);
+  const [categoriesIsLoading, setCategoriesIsLoading] = useState(false);
+
+  useEffect(() => {
+    const urlAllCategories = 'http://localhost:8080/categories/';
+    console.log('Categories: sending request to: ' + urlAllCategories);
+    setCategoriesIsLoading(true);
+    axios
+      .get(urlAllCategories, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setCaetgories(response.data);
+        setCategoriesIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   let content = <h3>Loading categories...</h3>;
 

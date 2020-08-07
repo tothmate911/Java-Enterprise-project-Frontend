@@ -3,7 +3,7 @@ import noCover from './no-cover.webp';
 import { Link } from 'react-router-dom';
 
 const BookCard = (props) => {
-  let { authors, title, image, isbn13, available } = props.book;
+  let { authors, title, image, id, available } = props.book;
   let imgClassNames = 'img.fluid m-0';
 
   if (!available) {
@@ -14,11 +14,11 @@ const BookCard = (props) => {
     image = noCover;
   }
 
-  const url = `/home/book/${isbn13}`;
+  const url = `/home/book/${id}`;
 
   return (
     <div className="card shadow p-0">
-      <Link to={url} key={isbn13}>
+      <Link to={url} key={id}>
         <div className="image-container">
           <img className={imgClassNames} width="100%" src={image} alt=""></img>
         </div>

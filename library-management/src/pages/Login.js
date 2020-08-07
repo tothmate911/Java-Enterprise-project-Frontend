@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { BookContext } from '../context/BookContext';
+import { CategoryContext } from '../context/CategoryContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const [books, booksIsLoading, fillBooksWithData] = useContext(BookContext);
+  const [categories, categoriesIsLoading, fillCategoriesWithData] = useContext(
+    CategoryContext
+  );
 
   let history = useHistory();
 
@@ -24,14 +31,15 @@ const Login = () => {
       })
       .then((response) => {
         const token = response.data.token;
-        console.log(token);
+        console.log('signin response token: ' + token);
         localStorage.setItem('username', username);
         localStorage.setItem('token', token);
+
         history.push('/home');
       })
       .catch((error) => {
         console.log(error);
-        window.alert('Username or pasword is not correct! Please try again!');
+        window.alert('Username or password is not correct! Please try again!');
       });
   };
 
