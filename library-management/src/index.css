@@ -1,13 +1,189 @@
+html {
+  background-color: #0b0c10;
+  min-height: 100%;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+td,
+p,
+.letter {
+  color: #c5c6c7;
+}
+
+th,
+td {
+  font-size: medium;
+  line-height: 0.5em;
+}
+
+#root {
+  background-color: #0b0c10;
+}
+
+.navbar {
+  background-color: #15171f !important;
+}
+
+.card,
+.card-body,
+.details {
+  background-color: #1f2833 !important;
+}
+
+.card {
+  border: none;
+  text-align: left;
+}
+
+.image-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.image-container img {
+  display: block;
+  transform: scale(1.23);
+}
+
+.bright-cyan {
+  color: #45a29e !important;
+}
+.page .container {
+  min-height: 800px;
+  margin-top: 30px;
+}
+
+.greycover {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: #ffc312;
+}
+
+.social_icon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.card-header h3 {
+  color: white;
+}
+
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: #ffc312;
+  color: black;
+  border: 0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+  color: white;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.login_btn {
+  color: black;
+  background-color: #ffc312;
+  width: 100px;
+}
+
+.login_btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.links {
+  color: white;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+.welcome-container {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.table-responsive td,
+th {
+  font-size: medium;
+  line-height: initial;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.table-title {
+  font-size: large;
+  color: #45a29e;
+  padding-left: 0 !important;
+}
+.table-subtitle {
+  font-size: medium;
+  color: #45a29e;
+}
+
+.table-authors {
+  font-style: italic;
+  font-size: small;
+  color: gray;
+}
+
+.table-img {
+  max-height: 200px;
+}
+
+.table-img-container {
+  max-width: 200px !important;
+  vertical-align: middle;
+}
+
+.table-book-titles {
+  display: inline-block;
 }
