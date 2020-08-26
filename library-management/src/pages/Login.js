@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [userCredentialError, setUserCredentialError] = useState("");
+  const [userCredentialError, setUserCredentialError] = useState('');
   const [correctCredentials, setCorrect] = useState(false);
 
   const handleSubmit = (e) => {
@@ -16,16 +16,16 @@ const Login = () => {
       /^([a-zA-Z0-9@*#]{3,20})$/.test(password)
     ) {
       setCorrect(true);
-      setUserCredentialError("");
+      setUserCredentialError('');
     } else {
       setCorrect(false);
-      setUserCredentialError("Invalid username or password.");
+      setUserCredentialError('Invalid username or password.');
     }
   };
 
   useEffect(() => {
     if (correctCredentials) {
-      const loginUrl = "http://localhost:8080/auth/signin";
+      const loginUrl = 'http://localhost:8080/auth/signin';
 
       axios
         .post(loginUrl, {
@@ -35,8 +35,8 @@ const Login = () => {
         .then((response) => {
           const token = response.data.token;
           console.log(token);
-          localStorage.setItem("token", token);
-          localStorage.setItem("username", username);
+          localStorage.setItem('token', token);
+          localStorage.setItem('username', username);
         });
     }
   }, [correctCredentials, username, password]);
